@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { loginSchema } from '../validation/loginSchema';
 import axios from 'axios';
@@ -62,7 +61,7 @@ function Login() {
     return(
         <div>
             <form onSubmit={onSubmit}>
-            <div>{formErrors.name}</div>
+            <div>{formErrors.username}</div>
             <div>{formErrors.password}</div>
                 <label>Username
                     <input 

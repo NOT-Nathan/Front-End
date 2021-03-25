@@ -62,9 +62,9 @@ function Register() {
         }, [formValues])
 
     return(
-        <div className='main-container'>
+        <div>
             <form onSubmit={onSubmit}>
-            <div>{formErrors.name}</div>
+            <div>{formErrors.username}</div>
             <div>{formErrors.password}</div>
             <div>{formErrors.phoneNumber}</div>
                 <label>Username
