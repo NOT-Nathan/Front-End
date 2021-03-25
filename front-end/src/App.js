@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Login from './components/Login';
+import PrivateRoute from './components/PrivateRoute';
+import Register from './components/Register';
+import EditPlant from './components/EditPlant';
+import PlantList from './components/PlantList';
+import EditUser from './components/EditUser';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      
+        <Switch>
+          <Route exact path='/login'>
+            <Login />
+          </Route>
+
+          <Route path='/register'>
+            <Register />
+          </Route>
+
+          <PrivateRoute path='/plants'>
+            <PlantList />
+          </PrivateRoute>
+
+          <PrivateRoute path='/editPlant'>
+            <EditPlant />
+          </PrivateRoute>
+
+          <PrivateRoute path='/editAccount'>
+            <EditUser />
+          </PrivateRoute>
+        </Switch>
+    
+    </Router>
   );
 }
 
