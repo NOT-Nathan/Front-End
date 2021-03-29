@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
@@ -9,16 +9,23 @@ import EditUser from './components/EditUser';
 import AddPlant from './components/AddPlant';
 
 function App() {
+  const initialState = {
+    username: '',
+    password: '',
+    phone: '',
+  };
+
+  const [user, setUser] = useState(initialState);
+
   return (
     <Router>
-      
         <Switch>
           <Route exact path='/login'>
-            <Login />
+            <Login user={user} setUser={setUser}/>
           </Route>
 
           <Route path='/register'>
-            <Register />
+            <Register user={user} setUser={setUser}/>
           </Route>
 
           <PrivateRoute path='/plants'>

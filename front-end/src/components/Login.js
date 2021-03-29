@@ -1,34 +1,30 @@
-import React, { useState } from "react";
-import { useHistory, Link } from 'react-router-dom';
+import React from "react";
 import axios from "axios";
+import { useHistory, Link } from "react-router-dom";
 
-const Login = () => {
-    const initialState = {
-       username: '',
-       password: '',
-       phone: '',
-    };
+const Login = ({user, setUser}) => {
 
-    const [credentials, setCredentials] = useState(initialState);
+    const {push} = useHistory();
 
     const handleChange = e => {
-        setCredentials({
-          ...credentials,
+        setUser({
+          ...user,
           [e.target.name]: e.target.value,
         })
       };
     
-    const { push } = useHistory();
     const login = e => {
         e.preventDefault();
-        axios.post('https://tt130bwplants.herokuapp.com/api/auth/login', credentials)
+        axios.post('https://tt130bwplants.herokuapp.com/api/auth/login', user)
             .then(res => {
-                // console.log(res);
+                console.log(res);
                 localStorage.setItem('authToken', res.data.payload);
             })
             .catch(err => console.log(err));
         push('/plants');
     };
+
+    
 
     return(
         <>
@@ -40,7 +36,7 @@ const Login = () => {
                 <input
                     type='text'
                     name='username'
-                    value={credentials.username}
+                    value={user.username}
                     onChange={handleChange}
                     />
 
@@ -48,13 +44,14 @@ const Login = () => {
                 <input
                     type='text'
                     name='password'
-                    value={credentials.password}
+                    value={user.password}
                     onChange={handleChange}
                 />
 
                 <button> Login</button>
 
                 <Link to='/register'>Don't Have An Account?</Link>
+                
             </form>
         </>
     )
