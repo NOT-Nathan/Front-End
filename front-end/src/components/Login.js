@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { loginSchema } from '../validation/loginSchema';
 import axios from 'axios';
+import styled from 'styled-components';
 
 const initialFormValues = {
     username: '',
@@ -59,10 +61,14 @@ function Login() {
         }, [formValues])
 
     return(
+      <Styled>
         <div>
-            <form onSubmit={onSubmit}>
-            <div>{formErrors.username}</div>
-            <div>{formErrors.password}</div>
+          <h1>Water my Plants</h1>
+          <div>
+          <h3>Log into your Account</h3>
+            <form onSubmit={onSubmit} className='form'>
+              <div>{formErrors.username}</div>
+              <div>{formErrors.password}</div>
                 <label>Username
                     <input 
                     onChange={onChange}
@@ -79,10 +85,29 @@ function Login() {
                         value={formValues.password}
                     />
                 </label>
+              <Link>
                 <button disabled={disabled}>Login</button>
+              </Link>
             </form>
+          </div>
         </div>
+      </Styled>
     )
 }
 
 export default Login
+
+const Styled = styled.div`
+
+& .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+button{
+  width: 30%;
+}
+`

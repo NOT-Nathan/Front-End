@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import { registerSchema } from '../validation/registerSchema';
 import axios from 'axios';
+import styled from 'styled-components';
 
 const initialFormValues = {
     username: '',
@@ -62,8 +63,12 @@ function Register() {
         }, [formValues])
 
     return(
+      <Styled>
         <div>
-            <form onSubmit={onSubmit}>
+          <h1>Water my Plants</h1>
+          <div>
+          <h3>Fill out this form to create your account.</h3>
+            <form onSubmit={onSubmit} className='form'>
             <div>{formErrors.username}</div>
             <div>{formErrors.password}</div>
             <div>{formErrors.phoneNumber}</div>
@@ -95,8 +100,24 @@ function Register() {
                 <button disabled={disabled}>Register</button>
                 </Link>
             </form>
+            </div>
         </div>
+      </Styled>
     )
 }
 
 export default Register
+
+const Styled = styled.div`
+
+& .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+
+`
