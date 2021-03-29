@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
 
-
 const Register = () => {
     const initialState = {
         username: '',
@@ -23,10 +22,7 @@ const Register = () => {
     const register = e => {
         e.preventDefault();
         axios.post('https://tt130bwplants.herokuapp.com/api/auth/register', user)
-            .then(res => {
-                // console.log(res);
-                localStorage.setItem('authToken', res.data.payload);
-            })
+            .then(res => console.log(res))
             .catch(err => console.log(err));
         push('/login')
     };
