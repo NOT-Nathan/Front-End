@@ -6,6 +6,7 @@ import Register from './components/Register';
 import EditPlant from './components/EditPlant';
 import PlantList from './components/PlantList';
 import EditUser from './components/EditUser';
+import AddPlant from './components/AddPlant';
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
 
           <PrivateRoute path='/editAccount'>
             <EditUser />
+          </PrivateRoute>
+
+          <PrivateRoute path='/addPlant'>
+            <AddPlant />
           </PrivateRoute>
         </Switch>
     

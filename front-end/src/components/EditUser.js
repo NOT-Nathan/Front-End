@@ -10,37 +10,33 @@ const EditUser = () => {
         phone: '',
     }
 
-    const [editUser, setEditUser] = useState(initialState);
+    const [user, updateUser] = useState(initialState);
 
     const { push } = useHistory();
     const saveEdit = e => {
         e.preventDefault();
-        axiosWithAuth().put(`/user/${editUser.id}`, editUser)
-          .then(res => console.log(res))
-            // updatePlants(plants.map(item => {
-            //   if(item.id === res.data.id) {
-            //     return res.data
-            //   } else {
-            //     return item
-            //   }
-            // }))
-          .catch(err => console.log(err));
+        axiosWithAuth().put(`https://tt130bwplants.herokuapp.com/api/user/${user.id}`, user)
+            .then(res => {
+                console.log(res)
+                updateUser(res.data)
+            })
+            .catch(err => console.log(err));
         push('/plants')
     };
 
-    const deleteUser = user => {
-        axiosWithAuth().delete(`user/${user.id}`)
-            .then(res => console.log(res))
-            // updatePlants(plants.filter(item => {
-            //   return item.id !== plant.id
-            // }))
+    const deleteUser = username => {
+        axiosWithAuth().delete(`https://tt130bwplants.herokuapp.com/api/user/${username.id}`)
+            .then(res => {
+                updateUser(user);
+                console.log(user)
+            })
             .catch(err => console.log(err));
         push('/login')
     };
 
     const handleChange = (e) => {
-        setEditUser({ 
-            ...editUser, 
+        updateUser({ 
+            ...user, 
             [e.target.name]: e.target.value 
         })
     };
@@ -51,25 +47,18 @@ const EditUser = () => {
         
         <form onSubmit={saveEdit}>
 
-            <label htmlFor="username">Username:</label>
-            <input
-                name="username"
-                onChange={handleChange}
-                value={editUser.username}
-            />
-
             <label htmlFor="password">Password:</label>
             <input
                 name="password"
                 onChange={handleChange}
-                value={editUser.password}
+                value={user.password}
             />
     
             <label htmlFor="phone">Phone Number:</label>
             <input
                 name="phone"
                 onChange={handleChange}
-                value={editUser.phone}
+                value={user.phone}
             />
     
             <button>Save</button>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import axios from "axios";
 
+
 const Register = () => {
     const initialState = {
         username: '',
@@ -9,11 +10,11 @@ const Register = () => {
         phone: '',
     }
   
-    const [credentials, setCredentials] = useState(initialState);
+    const [user, setUser] = useState(initialState);
   
     const handleChange = e => {
-      setCredentials({
-        ...credentials,
+      setUser({
+        ...user,
         [e.target.name]: e.target.value,
       })
     };
@@ -21,11 +22,15 @@ const Register = () => {
     const { push } = useHistory();
     const register = e => {
         e.preventDefault();
-        axios.post('/register', credentials)
-            .then(res => console.log(res))
+        axios.post('https://tt130bwplants.herokuapp.com/api/auth/register', user)
+            .then(res => {
+                // console.log(res);
+                localStorage.setItem('authToken', res.data.payload);
+            })
             .catch(err => console.log(err));
         push('/login')
     };
+
     return(
         <>
         <h1>
@@ -38,7 +43,7 @@ const Register = () => {
             <input
                 type='text'
                 name='username'
-                value={credentials.username}
+                value={user.username}
                 onChange={handleChange}
             />
   
@@ -46,7 +51,7 @@ const Register = () => {
             <input
                 type='text'
                 name='password'
-                value={credentials.password}
+                value={user.password}
                 onChange={handleChange}
             />
 
@@ -54,7 +59,7 @@ const Register = () => {
             <input
                 type='text'
                 name='phone'
-                value={credentials.phone}
+                value={user.phone}
                 onChange={handleChange}
             />
   

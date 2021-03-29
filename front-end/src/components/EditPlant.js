@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../helpers/axiosWithAuth';
 
-const EditPlant = () => {
+const EditPlant = ({plantList, setPlantList}) => {
 
     const initialState = {
         id: Date.now(),
@@ -14,22 +15,27 @@ const EditPlant = () => {
 
     const [plantToEdit, setPlantToEdit] = useState(initialState);
 
+    const { push } = useHistory();
+
     const saveEdit = e => {
         e.preventDefault();
-        axiosWithAuth().put(`/plants/${plantToEdit.id}`, plantToEdit)
-          .then(res => console.log(res))
-            // updatePlants(plants.map(item => {
-            //   if(item.id === res.data.id) {
-            //     return res.data
-            //   } else {
-            //     return item
-            //   }
-            // }))
-          .catch(err => console.log(err))
+        axiosWithAuth().put(`https://tt130bwplants.herokuapp.com/api/plants/${plantToEdit.id}`, plantToEdit)
+            .then(res => {
+                console.log(res);
+                setPlantList(plantList.map(item => {
+                    if(item.id === res.data.id) {
+                        return res.data
+                    } else {
+                        return item
+                    }
+                }))
+            })
+            .catch(err => console.log(err));
+        push('/plants');
     };
 
     const deletePlant = plant => {
-        axiosWithAuth().delete(`plants/${plant.id}`)
+        axiosWithAuth().delete(`https://reqres.in/api/users/${plant.id}`)
             .then(res => console.log(res))
             // updatePlants(plants.filter(item => {
             //   return item.id !== plant.id
@@ -45,6 +51,9 @@ const EditPlant = () => {
     };
 
     return(
+        <>
+        <h1>Edit Plant</h1>
+
         <form onSubmit={saveEdit}>
 
             <label htmlFor="nickname">Plant Nickname:</label>
@@ -76,9 +85,10 @@ const EditPlant = () => {
                 />
       
           <button>Save</button>
-          <button onClick={deletePlant}>Delete</button>
+          <button onClick={() => deletePlant}>Delete</button>
       
         </form>
+        </>
     )
 };
 

@@ -21,8 +21,11 @@ const Login = () => {
     const { push } = useHistory();
     const login = e => {
         e.preventDefault();
-        axios.post('/login', credentials)
-            .then(res => console.log(res))
+        axios.post('https://tt130bwplants.herokuapp.com/api/auth/login', credentials)
+            .then(res => {
+                // console.log(res);
+                localStorage.setItem('authToken', res.data.payload);
+            })
             .catch(err => console.log(err));
         push('/plants');
     };

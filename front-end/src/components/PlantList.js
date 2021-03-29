@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axiosWithAuth from '../helpers/axiosWithAuth';
+import AddPlant from './AddPlant';
+import EditPlant from "./EditPlant";
 
 const PlantList = () => {
 
     const [plantList, setPlantList] = useState([]);
+    const { push } = useHistory();
 
     useEffect(() => {
-        axiosWithAuth().get('/plants')
-            .then(res => console.log(res))
-            //setPlantList(res.data)
+        axiosWithAuth().get('https://tt130bwplants.herokuapp.com/api/auth/plants')
+            .then(res => {
+                // console.log(res);
+                setPlantList(res.data)
+            })
             .catch(err => console.log(err))
     }, [] );
-
-    const { push } = useHistory();
 
     return(
         <div className="plant-list-container">
@@ -27,14 +30,23 @@ const PlantList = () => {
                 Logout
             </Link>
 
-            <ul>
-                {plantList.map(plant => (
-                    <li key={plant.id} onClick={push('/editPlant')}>
-                        <img src={plant.img} alt='plant' />
-                    </li>
-                ))}
-            </ul>  
-      </div>
+            {/* {console.log(plantList)} */}
+            {plantList.map(plant => (
+                <div key={plant.id}>
+                    <img src={plant.img} alt='plant' onClick={<EditPlant />} />
+                    <p>Nickname:{plant.nickname}</p>
+                    <p>Species:{plant.species}</p>
+                    <p>H2O:{plant.H2O}</p>
+                </div>
+            ))}
+
+            <button onClick={() => {
+                <AddPlant plantList={plantList} setPlantList={setPlantList}/>;
+                push('/addPlant')
+            }}>
+            Add Plant
+            </button>
+        </div> 
     )
 };
 
