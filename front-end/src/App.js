@@ -46,7 +46,6 @@ function App() {
             <AddPlant />
           </PrivateRoute>
         </Switch>
-      </Router>
     </div>
   );
 }
