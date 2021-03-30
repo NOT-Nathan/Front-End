@@ -7,6 +7,7 @@ import EditPlant from './components/EditPlant';
 import PlantList from './components/PlantList';
 import EditUser from './components/EditUser';
 import AddPlant from './components/AddPlant';
+import './App.css';
 
 function App() {
   const initialState = {
@@ -18,8 +19,8 @@ function App() {
   const [user, setUser] = useState(initialState);
 
   return (
-    <Router>
-
+    <div className="App">
+      <Router>
         <Switch>
           <Route exact path='/'>
             <Login user={user} setUser={setUser}/>
@@ -45,8 +46,8 @@ function App() {
             <AddPlant />
           </PrivateRoute>
         </Switch>
-    
-    </Router>
+      </Router>
+    </div>
   );
 }
 
