@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { useHistory, Link } from "react-router-dom";
 
 const initialFormValues = {
+    id: '',
     username: '',
     phonenumber: '',
     password: '',

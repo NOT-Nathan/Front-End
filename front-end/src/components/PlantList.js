@@ -10,7 +10,7 @@ const PlantList = () => {
     const { push } = useHistory();
 
     useEffect(() => {
-        axiosWithAuth().get('https://tt130bwplants.herokuapp.com/api/auth/plants')
+        axiosWithAuth().get(`https://tt130bwplants.herokuapp.com/api/auth/plants`)
             .then(res => {
                 console.log(res);
                 setPlantList(res.data)

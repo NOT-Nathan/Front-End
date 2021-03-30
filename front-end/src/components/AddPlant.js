@@ -1,29 +1,31 @@
 import axiosWithAuth from '../helpers/axiosWithAuth';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const AddPlant = ({plantList, setPlantList}) => {
 
     const initialState = {
-        id: '',
+        id: Date.now(),
         nickname: '',
         species: '',
         H2O: '',
         img: '',
-        userID: '',
     }
 
     const [newPlant, setNewPlant] = useState(initialState);
 
     const handleChange = (e) => {
         setNewPlant({ 
-            ...plantList, 
+            ...newPlant, 
             [e.target.name]: e.target.value 
         })
     };
 
-    const submit = () => {
-        axiosWithAuth().put(`https://tt130bwplants.herokuapp.com/api/user/${plantList.userID}/plants`, newPlant)
+    console.log(plantList)
+    const submit = useEffect(() => {
+        axiosWithAuth().post(`https://tt130bwplants.herokuapp.com/api/plants`, newPlant)
+        //axiosWithAuth().post(`https://tt130bwplants.herokuapp.com/api/users/${}/plants`, newPlant)
+        //how do I access the userId in this post?
             .then(res => {
                 console.log(res);
                 setPlantList({
@@ -32,7 +34,7 @@ const AddPlant = ({plantList, setPlantList}) => {
                 })
             })
             .catch(err => console.log(err));
-    };
+        }, [plantList, newPlant, setPlantList] );
 
     const { push } = useHistory();
 
