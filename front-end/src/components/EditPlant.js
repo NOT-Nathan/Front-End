@@ -5,7 +5,6 @@ import axiosWithAuth from '../helpers/axiosWithAuth';
 const EditPlant = ({plantList, setPlantList}) => {
 
     const initialState = {
-        id: Date.now(),
         nickname: '',
         species: '',
         H2O: '',

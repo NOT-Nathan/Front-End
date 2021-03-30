@@ -4,15 +4,8 @@ import { useHistory, Link } from "react-router-dom";
 
 const Login = ({user, setUser}) => {
 
-    const {push} = useHistory();
+    const { push } = useHistory();
 
-    const handleChange = e => {
-        setUser({
-          ...user,
-          [e.target.name]: e.target.value,
-        })
-      };
-    
     const login = e => {
         e.preventDefault();
         axios.post('https://tt130bwplants.herokuapp.com/api/auth/login', user)
@@ -24,10 +17,16 @@ const Login = ({user, setUser}) => {
         push('/plants');
     };
 
-    
+    const handleChange = e => {
+        setUser({
+          ...user,
+          [e.target.name]: e.target.value,
+        })
+      };
 
     return(
         <>
+        {console.log(user)}
             <h1>Water My Plants!</h1>
 
             <form onSubmit={login}>

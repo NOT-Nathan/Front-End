@@ -12,15 +12,16 @@ function App() {
   const initialState = {
     username: '',
     password: '',
-    phone: '',
+    phonenumber: '',
   };
 
   const [user, setUser] = useState(initialState);
 
   return (
     <Router>
+
         <Switch>
-          <Route exact path='/login'>
+          <Route exact path='/'>
             <Login user={user} setUser={setUser}/>
           </Route>
 
@@ -37,7 +38,7 @@ function App() {
           </PrivateRoute>
 
           <PrivateRoute path='/editAccount'>
-            <EditUser />
+            <EditUser user={user} setUser={setUser}/>
           </PrivateRoute>
 
           <PrivateRoute path='/addPlant'>

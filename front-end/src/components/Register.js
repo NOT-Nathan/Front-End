@@ -10,11 +10,11 @@ const Register = ({user, setUser}) => {
         axios.post('https://tt130bwplants.herokuapp.com/api/auth/register', user)
             .then(res => {
                 console.log(res);
-                setUser(res.data);
+                setUser(res.data.new_user);
                 // localStorage.setItem('authToken', res.data.payload);
             })
             .catch(err => console.log(err));
-            push('/login')
+            push('/plants')
     };
 
     const handleChange = e => {
@@ -26,6 +26,7 @@ const Register = ({user, setUser}) => {
 
     return(
         <>
+        {/* {console.log(user)} */}
         <h1>
           Register a New Account
         </h1>
@@ -51,8 +52,8 @@ const Register = ({user, setUser}) => {
             <label>Phone Number:</label>
             <input
                 type='text'
-                name='phone'
-                value={user.phone}
+                name='phonenumber'
+                value={user.phonenumber}
                 onChange={handleChange}
             />
   

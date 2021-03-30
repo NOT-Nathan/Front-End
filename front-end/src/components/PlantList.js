@@ -12,11 +12,16 @@ const PlantList = () => {
     useEffect(() => {
         axiosWithAuth().get('https://tt130bwplants.herokuapp.com/api/auth/plants')
             .then(res => {
-                // console.log(res);
+                console.log(res);
                 setPlantList(res.data)
             })
             .catch(err => console.log(err))
     }, [] );
+
+    const logout = e => {
+        localStorage.clear();
+        push('/')
+    }
 
     return(
         <div className="plant-list-container">
@@ -26,9 +31,9 @@ const PlantList = () => {
             <Link to='/editAccount' >
                 Edit My Account
             </Link>
-            <Link to='/login'>
+            <button onClick={logout}>
                 Logout
-            </Link>
+            </button>
 
             {/* {console.log(plantList)} */}
             {plantList.map(plant => (

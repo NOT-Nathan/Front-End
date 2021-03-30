@@ -1,24 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../helpers/axiosWithAuth';
 
-const EditUser = () => {
-
-    const initialState = {
-        username: '',
-        password: '',
-        phone: '',
-    }
-
-    const [user, updateUser] = useState(initialState);
+const EditUser = ({user, setUser}) => {
 
     const { push } = useHistory();
+
     const saveEdit = e => {
         e.preventDefault();
         axiosWithAuth().put(`https://tt130bwplants.herokuapp.com/api/user/${user.id}`, user)
             .then(res => {
                 console.log(res)
-                updateUser(res.data)
+                setUser(res.data)
             })
             .catch(err => console.log(err));
         push('/plants')
@@ -27,15 +20,15 @@ const EditUser = () => {
     const deleteUser = username => {
         axiosWithAuth().delete(`https://tt130bwplants.herokuapp.com/api/user/${username.id}`)
             .then(res => {
-                updateUser(user);
+                setUser(user);
                 console.log(user)
             })
             .catch(err => console.log(err));
-        push('/login')
+        push('/')
     };
 
     const handleChange = (e) => {
-        updateUser({ 
+        setUser({ 
             ...user, 
             [e.target.name]: e.target.value 
         })
@@ -58,7 +51,7 @@ const EditUser = () => {
             <input
                 name="phone"
                 onChange={handleChange}
-                value={user.phone}
+                value={user.phonenumber}
             />
     
             <button>Save</button>

@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 const AddPlant = ({plantList, setPlantList}) => {
 
     const initialState = {
-        id: Date.now(),
+        id: '',
         nickname: '',
         species: '',
         H2O: '',
@@ -23,13 +23,13 @@ const AddPlant = ({plantList, setPlantList}) => {
     };
 
     const submit = () => {
-        axiosWithAuth().put(`https://tt130bwplants.herokuapp.com/api/user/${plantList.userID}/plants `, newPlant)
+        axiosWithAuth().put(`https://tt130bwplants.herokuapp.com/api/user/${plantList.userID}/plants`, newPlant)
             .then(res => {
                 console.log(res);
-                // setPlantList({
-                //     ...plantList,
-                //     newPlant
-                // })
+                setPlantList({
+                    ...plantList,
+                    newPlant
+                })
             })
             .catch(err => console.log(err));
     };
