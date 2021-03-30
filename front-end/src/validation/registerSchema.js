@@ -9,7 +9,7 @@ export const registerSchema = yup.object().shape({
     .string()
     .required('A Password is required!')
     .min(4, "A users password should be at least 4 characters long."),
-    phoneNumber: yup
+    phonenumber: yup
     .number()
     .required('A phone number is required!')
 })

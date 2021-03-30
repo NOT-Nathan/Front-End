@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import * as yup from 'yup';
 import { registerSchema } from '../validation/registerSchema';
-import axios from "axios";
+import axios from 'axios';
+import styled from 'styled-components';
 import { useHistory, Link } from "react-router-dom";
 
 const initialFormValues = {
@@ -12,8 +13,8 @@ const initialFormValues = {
 
 const initialFormErrors = {
     userName: '',
-    phoneNumber: '',
-    passWord: '',
+    phonenumber: '',
+    password: '',
 }
 
 const initialDisabled = true
@@ -56,45 +57,67 @@ const Register = () => {
         }, [formValues])
 
     return(
+      <Styled>
         <div>
-          <h1>Register a New Account</h1>
-  
-          <form onSubmit={onSubmit}>
-      
-            <div>{formErrors.userName}</div>
-            <div>{formErrors.passWord}</div>
-            <div>{formErrors.phoneNumber}</div>
-  
-            <label>Username:</label>
-            <input
-                type='text'
-                name='username'
-                value={formValues.username}
-                onChange={onChange}
-            />
-  
-            <label>Password:</label>
-            <input
-                type='text'
-                name='password'
-                value={formValues.password}
-                onChange={onChange}
-            />
-
-            <label>Phone Number:</label>
-            <input
-                type='text'
-                name='phonenumber'
-                value={formValues.phonenumber}
-                onChange={onChange}
-            />
-  
-            <button disabled={disabled}>Register</button>
-  
-        </form>
-      </div>
+          <h1>Water my Plants</h1>
+          <div>
+          <h3>Fill out this form to create your account.</h3>
+            <form onSubmit={onSubmit} className='form'>
+            <div>{formErrors.username}</div>
+            <div>{formErrors.password}</div>
+            <div>{formErrors.phonenumber}</div>
+                <label>Username
+                    <input 
+                        onChange={onChange}
+                        type='text'
+                        name='username'
+                        value={formValues.username}
+                    />
+                </label>
+                <label>Password
+                    <input 
+                    onChange={onChange}
+                    type='text'
+                    name='password'
+                    value={formValues.password}
+                    />
+                </label>
+                <label>Phone Number
+                    <input 
+                    onChange={onChange}
+                    type='text'
+                    name='phonenumber'
+                    value={formValues.phonenumber}
+                    />
+                </label>
+                <Link to='/' className='btn'>
+                <button disabled={disabled}>Register</button>
+                </Link>
+            </form>
+            </div>
+        </div>
+      </Styled>
     )
 };
 
 export default Register;
 
+const Styled = styled.div`
+
+& .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+& .btn{
+  width: 50%;
+}
+
+button{
+  width: 30%;
+}
+
+`

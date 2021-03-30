@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import axios from "axios";
 import { loginSchema } from '../validation/loginSchema';
+import styled from 'styled-components';
 import { useHistory, Link } from "react-router-dom";
 
 const initialFormValues = {
@@ -54,36 +56,60 @@ const Login = () => {
         }, [formValues])
 
     return(
+      <Styled>
         <div>
-            <h1>Water My Plants!</h1>
-
-            <form onSubmit={onSubmit}>
+          <h1>Water my Plants</h1>
+          <div>
+          <h3>Log into your Account</h3>
+            <form onSubmit={onSubmit} className='form'>
               <div>{formErrors.userName}</div>
               <div>{formErrors.passWord}</div>
+                <label>Username
+                    <input 
+                    onChange={onChange}
+                    type='text'
+                    name='username'
+                    value={formValues.username}
+                    />
+                </label>
+                <label>Password
+                    <input 
+                        onChange={onChange}
+                        type='text'
+                        name='password'
+                        value={formValues.password}
+                    />
+                </label>
+              <Link className='btn'>
+                <button disabled={disabled}>Login</button>
+              </Link>
+      
+              <Link to='/register'>Don't Have An Account?</Link>
 
-              <label>Username:</label>
-              <input
-                type='text'
-                name='username'
-                value={formValues.username}
-                onChange={onChange}
-               />
-
-               <label>Password:</label>
-               <input
-                  type='text'
-                  name='password'
-                  value={formValues.password}
-                  onChange={onChange}
-               />
-
-               <button disabled={disabled}> Login</button>
-
-               <Link to='/register'>Don't Have An Account?</Link>
             </form>
+          </div>
         </div>
+      </Styled>
     )
 };
 
 export default Login;
 
+const Styled = styled.div`
+
+& .form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+& .btn{
+  width: 50%;
+}
+
+button{
+  width: 30%;
+}
+`
