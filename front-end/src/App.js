@@ -10,23 +10,15 @@ import AddPlant from './components/AddPlant';
 import './App.css';
 
 function App() {
-  const initialState = {
-    username: '',
-    password: '',
-    phonenumber: '',
-  };
-
-  const [user, setUser] = useState(initialState);
-
   return (
     <div className="App">
         <Switch>
           <Route exact path='/'>
-            <Login user={user} setUser={setUser}/>
+            <Login />
           </Route>
 
           <Route path='/register'>
-            <Register user={user} setUser={setUser}/>
+            <Register />
           </Route>
 
           <PrivateRoute path='/plants'>
@@ -38,7 +30,7 @@ function App() {
           </PrivateRoute>
 
           <PrivateRoute path='/editAccount'>
-            <EditUser user={user} setUser={setUser}/>
+            <EditUser />
           </PrivateRoute>
 
           <PrivateRoute path='/addPlant'>
