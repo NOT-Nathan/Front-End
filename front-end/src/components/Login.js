@@ -85,7 +85,7 @@ function Login() {
                         value={formValues.password}
                     />
                 </label>
-              <Link>
+              <Link className='btn'>
                 <button disabled={disabled}>Login</button>
               </Link>
             </form>
@@ -105,6 +105,10 @@ const Styled = styled.div`
   justify-content: center;
   align-items: center;
 
+}
+
+& .btn{
+  width: 50%;
 }
 
 button{

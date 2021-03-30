@@ -7,14 +7,14 @@ import styled from 'styled-components';
 
 const initialFormValues = {
     username: '',
-    phoneNumber: '',
+    phonenumber: '',
     password: '',
   }
 
   const initialFormErrors = {
     userName: '',
-    phoneNumber: '',
-    passWord: '',
+    phonenumber: '',
+    password: '',
   }
 
   const initialDisabled = true
@@ -71,7 +71,7 @@ function Register() {
             <form onSubmit={onSubmit} className='form'>
             <div>{formErrors.username}</div>
             <div>{formErrors.password}</div>
-            <div>{formErrors.phoneNumber}</div>
+            <div>{formErrors.phonenumber}</div>
                 <label>Username
                     <input 
                         onChange={onChange}
@@ -92,11 +92,11 @@ function Register() {
                     <input 
                     onChange={onChange}
                     type='tel'
-                    name='phoneNumber'
-                    value={formValues.phoneNumber}
+                    name='phonenumber'
+                    value={formValues.phonenumber}
                     />
                 </label>
-                <Link to='/'>
+                <Link to='/' className='btn'>
                 <button disabled={disabled}>Register</button>
                 </Link>
             </form>
@@ -118,6 +118,12 @@ const Styled = styled.div`
 
 }
 
+& .btn{
+  width: 50%;
+}
 
+button{
+  width: 30%;
+}
 
 `
