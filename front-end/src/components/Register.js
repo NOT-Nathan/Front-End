@@ -23,7 +23,6 @@ const Register = () => {
   
     const [ formValues, setFormValues ] = useState(initialFormValues);
     const [ formErrors, setFormErrors ] = useState(initialFormErrors);
-    const [ post, setPost ] = useState();
     const [ disabled, setDisabled ] = useState(initialDisabled);
   
     const {push} = useHistory();
