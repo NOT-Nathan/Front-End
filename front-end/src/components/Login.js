@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 import axios from "axios";
 import { loginSchema } from '../validation/loginSchema';
@@ -38,11 +37,18 @@ const Login = () => {
         push('/plants');
     };
 
-    const onChange = (name, value, e) => {
-       yup.reach(loginSchema, name)
-        .validate(value)
-          .then(() => setFormErrors({...formErrors, [name]: ''}))
-          .catch(({errors}) => setFormErrors({...errors, [name]: formErrors[0]}));
+    const onChange = (e) => {
+       yup
+        .reach(loginSchema, e.target.name)
+        .validate(e.target.value)
+          .then(() => setFormErrors({
+            ...formErrors, 
+            [e.target.name]: ''
+          }))
+          .catch(({errors}) => setFormErrors({
+            ...errors, 
+            [e.target.name]: formErrors[0]
+          }));
       
        setFormValues({
           ...formValues,
@@ -51,8 +57,9 @@ const Login = () => {
       };
   
       useEffect(() => {
-        loginSchema.isValid(formValues)
-        .then(valid => setDisabled(!valid))
+        loginSchema
+          .isValid(formValues)
+          .then(valid => setDisabled(!valid))
         }, [formValues])
 
     return(
@@ -80,10 +87,9 @@ const Login = () => {
                         value={formValues.password}
                     />
                 </label>
-              <Link className='btn'>
-                <button disabled={disabled}>Login</button>
-              </Link>
-      
+              
+                <button className='btn' disabled={disabled}>Login</button>
+              
               <Link to='/register'>Don't Have An Account?</Link>
 
             </form>

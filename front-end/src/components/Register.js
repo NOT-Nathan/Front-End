@@ -27,11 +27,20 @@ const Register = () => {
   
     const {push} = useHistory();
     
-    const onChange = (name, value, e) => {
-      yup.reach(registerSchema, name)
-        .validate(value)
-          .then(() => setFormErrors({...formErrors, [name]: ''}))
-          .catch(({errors}) => setFormErrors({...errors, [name]: formErrors[0]}));
+    const onChange = (e) => {
+      yup
+        .reach(registerSchema, e.target.name)
+        .validate(e.target.value)
+          .then(() => 
+            setFormErrors({
+              ...formErrors,
+              [e.target.name]: ''
+          }))
+          .catch(({errors}) => 
+            setFormErrors({
+              ...errors, 
+              [e.target.name]: formErrors[0]
+          }));
       
         setFormValues({
           ...formValues,

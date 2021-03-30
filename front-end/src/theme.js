@@ -1,3 +1,5 @@
-export default {
+const theme = {
     primaryColor: "#cccccc",
 }
+
+export default theme;
