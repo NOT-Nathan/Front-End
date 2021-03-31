@@ -11,8 +11,8 @@ const initialFormValues = {
   }
 
   const initialFormErrors = {
-    userName: '',
-    passWord: '',
+    username: '',
+    password: '',
   }
 
   const initialDisabled = true
@@ -24,7 +24,7 @@ function Login() {
     const [ post, setPost ] = useState();
     const [ disabled, setDisabled ] = useState(initialDisabled);
 
-    const inputChange = (name, value, e) => {
+    const inputChange = (name, value) => {
         yup.reach(loginSchema, name)
         .validate(value)
         .then(() => setFormErrors({...formErrors, [name]: ''}))

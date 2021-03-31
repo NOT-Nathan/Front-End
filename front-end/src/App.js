@@ -9,6 +9,9 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <Route exact path='/plantlist'>
+
+        </Route>
         <Route exact path='/register'>
           <Register />
         </Route>

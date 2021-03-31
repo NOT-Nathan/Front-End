@@ -26,7 +26,7 @@ function Register() {
     const [ post, setPost ] = useState();
     const [ disabled, setDisabled ] = useState(initialDisabled);
 
-    const inputChange = (name, value, e) => {
+    const inputChange = (name, value) => {
         yup.reach(registerSchema, name)
         .validate(value)
         .then(() => setFormErrors({...formErrors, [name]: ''}))
