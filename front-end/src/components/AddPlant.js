@@ -21,7 +21,7 @@ const AddPlant = ({plantList, setPlantList}) => {
         })
     };
 
-    console.log(plantList)
+    // console.log(plantList)
     const submit = useEffect(() => {
         axiosWithAuth().post(`https://tt130bwplants.herokuapp.com/api/plants`, newPlant)
         //axiosWithAuth().post(`https://tt130bwplants.herokuapp.com/api/users/${}/plants`, newPlant)

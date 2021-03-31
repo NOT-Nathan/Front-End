@@ -35,10 +35,12 @@ const EditPlant = ({plantList, setPlantList}) => {
 
     const deletePlant = plant => {
         axiosWithAuth().delete(`https://reqres.in/api/users/${plant.id}`)
-            .then(res => console.log(res))
-            // updatePlants(plants.filter(item => {
-            //   return item.id !== plant.id
-            // }))
+            .then(res => {
+                console.log(res);
+                setPlantList(plantList.filter(item => {
+                    return plant.id !== plantList.id
+                }))
+            })
             .catch(err => console.log(err))
     };
 

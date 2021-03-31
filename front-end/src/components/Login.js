@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import * as yup from 'yup';
-import axios from "axios";
 import { loginSchema } from '../validation/loginSchema';
 import styled from 'styled-components';
 import { useHistory, Link } from "react-router-dom";
+import axios from 'axios';
 
 const initialFormValues = {
     username: '',
@@ -31,7 +31,6 @@ const Login = () => {
             .then(res => {
                 console.log(res);
                 localStorage.setItem('authToken', res.data.payload);
-                setFormValues(initialFormValues);
             })
             .catch(err => console.log(err));
         push('/plants');

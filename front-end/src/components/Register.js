@@ -13,7 +13,7 @@ const initialFormValues = {
 }
 
 const initialFormErrors = {
-    userName: '',
+    username: '',
     phonenumber: '',
     password: '',
 }
@@ -86,7 +86,7 @@ const Register = () => {
                 <label>Password
                     <input 
                     onChange={onChange}
-                    type='text'
+                    type='password'
                     name='password'
                     value={formValues.password}
                     />
@@ -94,7 +94,7 @@ const Register = () => {
                 <label>Phone Number
                     <input 
                     onChange={onChange}
-                    type='text'
+                    type='tel'
                     name='phonenumber'
                     value={formValues.phonenumber}
                     />
