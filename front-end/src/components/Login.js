@@ -88,7 +88,7 @@ const Login = () => {
                         placeholder='Password'
                     />
                 </label>
-                <Link to='/plants'>
+                <Link to='/plants' className='btn-link'>
                   <button className='btn' disabled={disabled}>Login</button>
                 </Link>
               <Link to='/register' className='link'>Don't Have An Account?</Link>
@@ -107,14 +107,13 @@ const Styled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: solid 2px blue;
-  background-color: green;
+  border: solid 4px forestgreen;
+  background-color: #E9967A;
   width: 80%;
 }
 
 & .btn{
-  width: 67%;
-  border-radius: 15px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -128,10 +127,14 @@ const Styled = styled.div`
 }
 
 & .link{
-  text-decoration: none;
-  color: black;
+  color: blue;
   margin-top: 4%;
   margin-bottom: 4%;
+}
+
+& .btn-link{
+  width: 70%;
+  margin: 0 auto;
 }
 
 & .last{
@@ -142,6 +145,8 @@ button{
   margin-bottom: 10px;
   margin-top: 2%;
   padding: 1% 0%;
+  background-color: rosybrown;
+  color: blue;
 }
 
 input{
@@ -149,10 +154,34 @@ input{
   padding-top: 2%;
   padding-bottom: 2%;
   width: 100%;
+  margin-bottom: 8px;
+  
 }
 
 label{
   font-size: 1.2rem;
   margin: 1% 0%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1{
+  color: blue;
+  text-shadow: 2.2px 1px 0px white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h3{
+  color: black;
+  font-family: Arial, Helvetica, sans-serif ;
+}
+
+@media(min-width: 1200px) {
+  & .btn{
+    width: 100%;
+  }
+
+  & .btn-link{
+    width: 40%;
+  }
 }
 `

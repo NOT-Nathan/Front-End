@@ -101,7 +101,7 @@ const Register = () => {
                     placeholder='Phone Number'
                     />
                 </label>
-                <Link to='/' >
+                <Link to='/' className='btn-link'>
                   <button disabled={disabled} className='btn'>Register</button>
                 </Link>
             </form>
@@ -119,14 +119,13 @@ const Styled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: solid 2px blue;
-  background-color: green;
-  width: 80%;
+  border: solid 4px forestgreen;
+  background-color: #E9967A;
+  width: 90%;
 }
 
 & .btn{
-  width: 200%;
-  border-radius: 15px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -143,10 +142,18 @@ const Styled = styled.div`
   margin-bottom: 3%;
 }
 
+& .btn-link{
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 4%;
+}
+
 button{
-  margin-bottom: 10px;
+  margin-bottom: 10%;
   margin-top: 2%;
   padding: 1% 0%;
+  background-color: rosybrown;
+  color: blue;
 }
 
 input{
@@ -154,11 +161,32 @@ input{
   padding-top: 2%;
   padding-bottom: 2%;
   width: 100%;
+  margin-bottom: 8px;
 }
 
 label{
   font-size: 1.2rem;
   margin: 1% 0%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
+h1{
+  color: blue;
+  text-shadow: 2.2px 1px 0px white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h3{
+  color: black;
+  font-family: Arial, Helvetica, sans-serif ;
+}
+
+@media(min-width: 1200px) {
+  & .btn{
+    width: 100%;
+  }
+
+  & .btn-link{
+    width: 40%;
+  }
 `
