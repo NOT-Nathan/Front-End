@@ -67,11 +67,10 @@ const Register = () => {
 
     return(
       <Styled>
-        <div>
+        <div className='main'>
           <h1>Water my Plants</h1>
-          <div>
-          <h3>Fill out this form to create your account.</h3>
             <form onSubmit={onSubmit} className='form'>
+            <h3>Fill out this form to create your account.</h3>
             <div>{formErrors.username}</div>
             <div>{formErrors.password}</div>
             <div>{formErrors.phonenumber}</div>
@@ -81,6 +80,7 @@ const Register = () => {
                         type='text'
                         name='username'
                         value={formValues.username}
+                        placeholder='Username'
                     />
                 </label>
                 <label>Password
@@ -89,21 +89,22 @@ const Register = () => {
                     type='text'
                     name='password'
                     value={formValues.password}
+                    placeholder='Password'
                     />
                 </label>
-                <label>Phone Number
+                <label className='last'>Phone Number
                     <input 
                     onChange={onChange}
                     type='text'
                     name='phonenumber'
                     value={formValues.phonenumber}
+                    placeholder='Phone Number'
                     />
                 </label>
-                <Link to='/' className='btn'>
-                <button disabled={disabled}>Register</button>
+                <Link to='/' >
+                  <button disabled={disabled} className='btn'>Register</button>
                 </Link>
             </form>
-            </div>
         </div>
       </Styled>
     )
@@ -118,15 +119,46 @@ const Styled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  border: solid 2px blue;
+  background-color: green;
+  width: 80%;
 }
 
 & .btn{
+  width: 200%;
+  border-radius: 15px;
+  margin: 0 auto;
+}
+
+& .main{
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+& .last{
+  margin-bottom: 3%;
 }
 
 button{
-  width: 30%;
+  margin-bottom: 10px;
+  margin-top: 2%;
+  padding: 1% 0%;
+}
+
+input{
+  border-radius: 15px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  width: 100%;
+}
+
+label{
+  font-size: 1.2rem;
+  margin: 1% 0%;
 }
 
 `

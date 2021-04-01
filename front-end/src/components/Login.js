@@ -64,11 +64,10 @@ const Login = () => {
 
     return(
       <Styled>
-        <div>
+        <div className='main'>
           <h1>Water my Plants</h1>
-          <div>
-          <h3>Log into your Account</h3>
             <form onSubmit={onSubmit} className='form'>
+            <h3>Log into your Account</h3>
               <div>{formErrors.userName}</div>
               <div>{formErrors.passWord}</div>
                 <label>Username
@@ -77,23 +76,23 @@ const Login = () => {
                     type='text'
                     name='username'
                     value={formValues.username}
+                    placeholder='Username'
                     />
                 </label>
-                <label>Password
+                <label className='last'>Password
                     <input 
                         onChange={onChange}
                         type='text'
                         name='password'
                         value={formValues.password}
+                        placeholder='Password'
                     />
                 </label>
-              
-                <button className='btn' disabled={disabled}>Login</button>
-              
-              <Link to='/register'>Don't Have An Account?</Link>
-
+                <Link to='/plants'>
+                  <button className='btn' disabled={disabled}>Login</button>
+                </Link>
+              <Link to='/register' className='link'>Don't Have An Account?</Link>
             </form>
-          </div>
         </div>
       </Styled>
     )
@@ -108,14 +107,52 @@ const Styled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  border: solid 2px blue;
+  background-color: green;
+  width: 80%;
 }
 
 & .btn{
+  width: 67%;
+  border-radius: 15px;
+  margin: 0 auto;
+}
+
+& .main{
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+& .link{
+  text-decoration: none;
+  color: black;
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
+
+& .last{
+  margin-bottom: 3%;
 }
 
 button{
-  width: 30%;
+  margin-bottom: 10px;
+  margin-top: 2%;
+  padding: 1% 0%;
+}
+
+input{
+  border-radius: 15px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  width: 100%;
+}
+
+label{
+  font-size: 1.2rem;
+  margin: 1% 0%;
 }
 `
