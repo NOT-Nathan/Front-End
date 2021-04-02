@@ -78,7 +78,6 @@ h1{
   font-family: WildGrowth;
   font-size: 50px;
   text-align: end;
-  border-bottom: solid red 4px;
 }
 
 button{
@@ -98,7 +97,6 @@ button{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: solid red 4px;
     margin-top: 2%;
 }
 
@@ -107,7 +105,6 @@ button{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    border-bottom: solid red 4px;
 }
 
 & .logout-btn{
