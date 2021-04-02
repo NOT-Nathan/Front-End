@@ -31,7 +31,7 @@ const EditPlant = ({plantList, setPlantList}) => {
 
     const saveEdit = e => {
         e.preventDefault();
-        axiosWithAuth().put(`https://tt130bwplants.herokuapp.com/api/plants/${plantToEdit.id}`, plantToEdit)
+        axiosWithAuth().put(`https://tt130bwplants.herokuapp.com/api/auth/plants/${plantToEdit.id}`, plantToEdit)
             .then(res => {
                 console.log(res);
                 setPlantList(plantList.map(item => {
@@ -47,11 +47,13 @@ const EditPlant = ({plantList, setPlantList}) => {
     };
 
     const deletePlant = plant => {
-        axiosWithAuth().delete(`https://reqres.in/api/users/${plant.id}`)
-            .then(res => console.log(res))
-            // updatePlants(plants.filter(item => {
-            //   return item.id !== plant.id
-            // }))
+        axiosWithAuth().delete(`https://tt130bwplants.herokuapp.com/api/auth/plants/${plant.id}`)
+            .then(res => {
+                console.log(res);
+                setPlantList(plantList.filter(item => {
+                    return item.id !== plant.id
+                }))
+            })
             .catch(err => console.log(err))
     };
 

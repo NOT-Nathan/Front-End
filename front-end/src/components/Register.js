@@ -26,7 +26,7 @@ const Register = () => {
     const [ formErrors, setFormErrors ] = useState(initialFormErrors);
     const [ disabled, setDisabled ] = useState(initialDisabled);
   
-    const {push} = useHistory();
+    const { push } = useHistory();
     
     const onChange = (e) => {
       yup
@@ -86,7 +86,7 @@ const Register = () => {
                 <label>Password:
                     <input 
                     onChange={onChange}
-                    type='text'
+                    type='password'
                     name='password'
                     value={formValues.password}
                     placeholder='Password'
@@ -95,7 +95,7 @@ const Register = () => {
                 <label className='last'>Phone Number:
                     <input 
                     onChange={onChange}
-                    type='text'
+                    type='tel'
                     name='phonenumber'
                     value={formValues.phonenumber}
                     placeholder='Phone Number'
