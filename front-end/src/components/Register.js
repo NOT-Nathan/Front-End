@@ -67,43 +67,44 @@ const Register = () => {
 
     return(
       <Styled>
-        <div>
+        <div className='main'>
           <h1>Water my Plants</h1>
-          <div>
-          <h3>Fill out this form to create your account.</h3>
             <form onSubmit={onSubmit} className='form'>
+            <h3>Fill out this form to create your account.</h3>
             <div>{formErrors.username}</div>
             <div>{formErrors.password}</div>
             <div>{formErrors.phonenumber}</div>
-                <label>Username
+                <label>Username:
                     <input 
                         onChange={onChange}
                         type='text'
                         name='username'
                         value={formValues.username}
+                        placeholder='Username'
                     />
                 </label>
-                <label>Password
+                <label>Password:
                     <input 
                     onChange={onChange}
                     type='password'
                     name='password'
                     value={formValues.password}
+                    placeholder='Password'
                     />
                 </label>
-                <label>Phone Number
+                <label className='last'>Phone Number:
                     <input 
                     onChange={onChange}
                     type='tel'
                     name='phonenumber'
                     value={formValues.phonenumber}
+                    placeholder='Phone Number'
                     />
                 </label>
-                <Link to='/' className='btn'>
-                <button disabled={disabled}>Register</button>
+                <Link to='/' className='btn-link'>
+                  <button disabled={disabled} className='btn'>Register</button>
                 </Link>
             </form>
-            </div>
         </div>
       </Styled>
     )
@@ -113,20 +114,90 @@ export default Register;
 
 const Styled = styled.div`
 
+font-family: Comfortaa;
+
 & .form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  border: solid 4px forestgreen;
+  background-color: #E9967A;
+  width: 90%;
 }
 
 & .btn{
+  width: 100%;
+  margin: 0 auto;
+}
+
+& .main{
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+& .last{
+  margin-bottom: 3%;
+}
+
+& .btn-link{
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 4%;
 }
 
 button{
-  width: 30%;
+  margin-bottom: 10%;
+  margin-top: 2%;
+  padding: 1% 0%;
+  background-color: rosybrown;
+  color: blue;
+  font-family: Comfortaa;
 }
 
+input{
+  border-radius: 15px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  width: 100%;
+  margin-bottom: 8px;
+  font-family: Comfortaa;
+}
+
+label{
+  font-size: 1.2rem;
+  margin: 1% 0%;
+  font-family: Comfortaa;
+}
+
+h1{
+  color: blue;
+  text-shadow: 2.2px 1px 0px white;
+  font-family: WildGrowth;
+  font-size: 50px;
+}
+
+h3{
+  color: black;
+  font-family: Comfortaa;
+}
+
+button:hover{
+    background-color: lightgray;
+}
+
+@media(min-width: 1200px) {
+  & .btn{
+    width: 100%;
+  }
+
+  & .btn-link{
+    width: 40%;
+  }
+
+}
 `

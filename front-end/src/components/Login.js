@@ -3,12 +3,19 @@ import * as yup from 'yup';
 import { loginSchema } from '../validation/loginSchema';
 import styled from 'styled-components';
 import { useHistory, Link } from "react-router-dom";
+import '../index.css';
 import axios from 'axios';
 import { UserContext } from '../contexts/UserContext';
+
 
 const initialFormErrors = {
     username: '',
     password: '',
+};
+
+const initialFormErrors = {
+    username: '',
+    passnord: '',
 };
 
 const initialDisabled = true;
@@ -60,40 +67,35 @@ const Login = () => {
 
     return(
       <Styled>
-          <div>
-            <h1>Water my Plants</h1>
-
-            <div>
-              <h3>Log into your Account</h3>
-
+        <div className='main'>
+          <h1>Water my Plants</h1>
             <form onSubmit={onSubmit} className='form'>
+            <h3>Log into your Account</h3>
               <div>{formErrors.username}</div>
               <div>{formErrors.password}</div>
-
-              <label>Username
-                <input 
-                  onChange={onChange}
-                  type='text'
-                  name='username'
-                  value={formValues.username}
-                />
-              </label>
-
-              <label>Password
-                <input 
-                  onChange={onChange}
-                  type='password'
-                  name='password'
-                  value={formValues.password}
-                />
-              </label>
-              
-              <button className='btn' disabled={disabled}>Login</button>
-              
-              <Link to='/register'>Don't Have An Account?</Link>
-
+                <label>Username:
+                    <input 
+                    onChange={onChange}
+                    type='text'
+                    name='username'
+                    value={formValues.username}
+                    placeholder='Username'
+                    />
+                </label>
+                <label className='last'>Password:
+                    <input 
+                        onChange={onChange}
+                        type='text'
+                        name='password'
+                        value={formValues.password}
+                        placeholder='Password'
+                    />
+                </label>
+                <Link to='/plants' className='btn-link'>
+                  <button className='btn' disabled={disabled}>Login</button>
+                </Link>
+              <Link to='/register' className='link'>Don't Have An Account?</Link>
             </form>
-          </div>
         </div>
     </Styled>
   )
@@ -103,19 +105,96 @@ export default Login;
 
 const Styled = styled.div`
 
+font-family: Comfortaa;
+
 & .form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  border: solid 4px forestgreen;
+  background-color: #E9967A;
+  width: 80%;
 }
 
 & .btn{
+  width: 100%;
+  margin: 0 auto;
+}
+
+& .main{
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+& .link{
+  color: blue;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  font-family: Comfortaa;
+}
+
+& .btn-link{
+  width: 70%;
+  margin: 0 auto;
+}
+
+& .last{
+  margin-bottom: 3%;
 }
 
 button{
-  width: 30%;
+  margin-bottom: 10px;
+  margin-top: 2%;
+  padding: 1% 0%;
+  background-color: rosybrown;
+  color: blue;
+  font-family: Comfortaa;
 }
+
+input{
+  border-radius: 15px;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  width: 100%;
+  margin-bottom: 8px;
+  font-family: Comfortaa;
+}
+
+label{
+  font-size: 1.2rem;
+  margin: 1% 0%;
+  font-family: Comfortaa;
+}
+
+h1{
+  color: blue;
+  text-shadow: 2.2px 1px 0px white;
+  font-family: WildGrowth;
+  font-size: 50px;
+}
+
+h3{
+  color: black;
+  font-family: Comfortaa;
+}
+
+button:hover{
+    background-color: lightgray;
+}
+
+@media(min-width: 1200px) {
+  & .btn{
+    width: 100%;
+  }
+
+  & .btn-link{
+    width: 40%;
+  }
+}
+
 `

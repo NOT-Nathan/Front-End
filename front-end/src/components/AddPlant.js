@@ -1,6 +1,9 @@
 import axiosWithAuth from '../helpers/axiosWithAuth';
 import { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+import * as yup from 'yup';
+import addPlantSchema from '../validation/addPlantSchema';
 import { UserContext } from '../contexts/UserContext';
 
 const AddPlant = ({plantList, setPlantList}) => {
@@ -15,9 +18,32 @@ const AddPlant = ({plantList, setPlantList}) => {
         img: '',
     }
 
+    const initialFormErrors = {
+        nickname: '',
+        species: '',
+        H2O: '',
+        img: ''
+    }
+
+    const initialDisabled = true
+
     const [newPlant, setNewPlant] = useState(initialState);
+    const [ formErrors, setFormErrors ] = useState(initialFormErrors);
+    const [ disabled, setDisabled ] = useState(initialDisabled);
 
     const handleChange = (e) => {
+        yup
+        .reach(addPlantSchema, e.target.name)
+        .validate(e.target.value)
+          .then(() => setFormErrors({
+            ...formErrors, 
+            [e.target.name]: ''
+          }))
+          .catch(({errors}) => setFormErrors({
+            ...errors, 
+            [e.target.name]: formErrors[0]
+          }));
+
         setNewPlant({ 
             ...newPlant, 
             [e.target.name]: e.target.value 
@@ -39,9 +65,24 @@ const AddPlant = ({plantList, setPlantList}) => {
 
     const { push } = useHistory();
 
+    useEffect(() => {
+        addPlantSchema
+          .isValid(newPlant)
+          .then(valid => setDisabled(!valid))
+        }, [newPlant])
+
     return(
+        <Styled>
+  
         <form onSubmit={submit}>
-            <h1>Add A New Plant</h1>
+        
+            <div className='heading'>
+
+                <h2>Add A New Plant</h2>
+
+            </div>
+
+            <div className='main-container'>
 
             <label htmlFor="nickname">Plant Nickname:</label>
             <input
@@ -66,14 +107,72 @@ const AddPlant = ({plantList, setPlantList}) => {
 
             <label htmlFor="img">Image:</label>
             <input
+                placeholder='Optional'
                 name="img"
                 onChange={handleChange}
                 value={newPlant.img}
             />
 
-            <button onClick={() => push('/plants')}>Add Plant</button>
+            <button disabled={disabled} onClick={() => push('/plants')}>Add Plant</button>
+
+            </div>
+
         </form>
+
+        </Styled>
     )
 };
 
 export default AddPlant;
+
+const Styled = styled.div`
+
+font-family: Comfortaa;
+
+h2{
+  color: blue;
+  text-shadow: 2.2px 1px 0px white;
+  font-family: WildGrowth;
+  font-size: 50px;
+}
+
+label{
+  font-size: 1.4rem;
+  margin: 1% 0%;
+  text-decoration: underline;
+  font-family: Comfortaa;
+}
+
+input{
+  border-radius: 15px;
+  padding: 0.4% 0%;
+  font-family: Comfortaa;
+}
+
+button{
+  padding: 0.5% 1%;
+  font-size: 18px;
+  border-radius: 15px;
+  background-color: rosybrown;
+  color: blue;
+  font-family: Comfortaa;
+}
+
+& .heading{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+& .main-container{ 
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    align-items: center;
+    margin: 0 auto;
+}
+
+button:hover{
+    background-color: lightgray;
+}
+`
