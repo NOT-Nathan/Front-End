@@ -112,7 +112,7 @@ input{
 }
 
 button{
-  padding: 1% 1%;
+  padding: 0.5% 1%;
   font-size: 18px;
   border-radius: 15px;
   background-color: rosybrown;
