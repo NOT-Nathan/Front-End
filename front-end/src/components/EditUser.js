@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../helpers/axiosWithAuth';
+import * as yup from 'yup';
+import editUserSchema from '../validation/editUserSchema';
 
 const EditUser = ({user, setUser}) => {
+
+    const initialFormErrors = {
+        nickname: '',
+        species: '',
+        H2O: '',
+        img: ''
+    }
+
+    const initialDisabled = true
+
+    const [ formErrors, setFormErrors ] = useState(initialFormErrors);
+    const [ disabled, setDisabled ] = useState(initialDisabled);
 
     const { push } = useHistory();
 
@@ -28,11 +42,30 @@ const EditUser = ({user, setUser}) => {
     };
 
     const handleChange = (e) => {
+
+        yup
+        .reach(editUserSchema, e.target.name)
+        .validate(e.target.value)
+          .then(() => setFormErrors({
+            ...formErrors, 
+            [e.target.name]: ''
+          }))
+          .catch(({errors}) => setFormErrors({
+            ...errors, 
+            [e.target.name]: formErrors[0]
+          }));
+
         setUser({ 
             ...user, 
             [e.target.name]: e.target.value 
         })
     };
+
+    useEffect(() => {
+        editUserSchema
+          .isValid(user)
+          .then(valid => setDisabled(!valid))
+        }, [user])
 
     return(
         <>
@@ -54,7 +87,7 @@ const EditUser = ({user, setUser}) => {
                 value={user.phonenumber}
             />
     
-            <button>Save</button>
+            <button disabled={disabled}>Save</button>
             <button onClick={deleteUser}>Delete Account</button>
         </form>
         </>
