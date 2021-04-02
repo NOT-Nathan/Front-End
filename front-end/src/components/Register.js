@@ -26,7 +26,7 @@ const Register = () => {
     const [ formErrors, setFormErrors ] = useState(initialFormErrors);
     const [ disabled, setDisabled ] = useState(initialDisabled);
   
-    const {push} = useHistory();
+    const { push } = useHistory();
     
     const onChange = (e) => {
       yup

@@ -7,19 +7,19 @@ import { UserContext } from '../contexts/UserContext';
 
 const PlantList = () => {
 
-    const user = useContext(UserContext);
+    const { formValues } = useContext(UserContext);
 
     const [plantList, setPlantList] = useState([]);
     const { push } = useHistory();
 
     useEffect(() => {
-        axiosWithAuth().get(`https://tt130bwplants.herokuapp.com/api/users/${user.formValues.id}/plants`)
+        axiosWithAuth().get(`https://tt130bwplants.herokuapp.com/api/users/${formValues.id}/plants`)
             .then(res => {
                 console.log(res);
                 setPlantList(res.data)
             })
             .catch(err => console.log(err))
-    }, [user.formValues.id] );
+    }, [formValues.id] );
 
     const logout = e => {
         localStorage.clear();

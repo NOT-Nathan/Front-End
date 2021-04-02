@@ -5,34 +5,34 @@ import { UserContext } from '../contexts/UserContext';
 
 const EditUser = () => {
 
-    const user = useContext(UserContext);
+    const { formValues, setFormValues } = useContext(UserContext);
 
     const { push } = useHistory();
 
     const saveEdit = e => {
         e.preventDefault();
-        axiosWithAuth().put(`https://tt130bwplants.herokuapp.com/api/user/${user.formValues.id}`, user.formValues)
+        axiosWithAuth().put(`https://tt130bwplants.herokuapp.com/api/user/${formValues.id}`, formValues)
             .then(res => {
                 console.log(res)
-                user.setFormValues(res.data)
+                setFormValues(res.data)
             })
             .catch(err => console.log(err));
         push('/plants')
     };
 
     const deleteUser = e => {
-        axiosWithAuth().delete(`https://tt130bwplants.herokuapp.com/api/user/${user.formValues.id}`)
+        axiosWithAuth().delete(`https://tt130bwplants.herokuapp.com/api/user/${formValues.id}`)
             .then(res => {
                 console.log(res);
-                user.setFormValues(user.formValues);
+                setFormValues(formValues);
             })
             .catch(err => console.log(err));
         push('/')
     };
 
     const handleChange = (e) => {
-        user.setFormValues({ 
-            ...user.formValues, 
+        setFormValues({ 
+            ...formValues, 
             [e.target.name]: e.target.value 
         })
     };
@@ -47,14 +47,14 @@ const EditUser = () => {
             <input
                 name="password"
                 onChange={handleChange}
-                value={user.formValues.password}
+                value={formValues.password}
             />
     
             <label htmlFor="phone">Phone Number:</label>
             <input
                 name="phone"
                 onChange={handleChange}
-                value={user.formValues.phonenumber}
+                value={formValues.phonenumber}
             />
     
             <button>Save</button>

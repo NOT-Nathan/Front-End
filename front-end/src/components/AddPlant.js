@@ -5,7 +5,7 @@ import { UserContext } from '../contexts/UserContext';
 
 const AddPlant = ({plantList, setPlantList}) => {
 
-    const user = useContext(UserContext);
+    const { formValues } = useContext(UserContext);
 
     const initialState = {
         id: Date.now(),
@@ -26,7 +26,7 @@ const AddPlant = ({plantList, setPlantList}) => {
 
     // console.log(plantList)
     const submit = useEffect(() => {
-        axiosWithAuth().post(`https://tt130bwplants.herokuapp.com/api/users/${user.formValues.id}/plants`, newPlant)
+        axiosWithAuth().post(`https://tt130bwplants.herokuapp.com/api/users/${formValues.id}/plants`, newPlant)
             .then(res => {
                 console.log(res);
                 setPlantList({
@@ -35,7 +35,7 @@ const AddPlant = ({plantList, setPlantList}) => {
                 })
             })
             .catch(err => console.log(err));
-        }, [plantList, newPlant, setPlantList, user.formValues.id] );
+        }, [plantList, newPlant, setPlantList, formValues.id] );
 
     const { push } = useHistory();
 

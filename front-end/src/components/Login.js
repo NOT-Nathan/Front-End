@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import * as yup from 'yup';
 import { loginSchema } from '../validation/loginSchema';
 import styled from 'styled-components';
 import { useHistory, Link } from "react-router-dom";
 import axios from 'axios';
 import { UserContext } from '../contexts/UserContext';
-
-const initialFormValues = {
-    id: '',
-    username: '',
-    password: '',
-};
 
 const initialFormErrors = {
     username: '',
@@ -20,8 +14,9 @@ const initialFormErrors = {
 const initialDisabled = true;
 
 const Login = () => {
+
+    const { formValues, setFormValues } = useContext(UserContext);
   
-    const [ formValues, setFormValues ] = useState(initialFormValues);
     const [ formErrors, setFormErrors ] = useState(initialFormErrors);
     const [ disabled, setDisabled ] = useState(initialDisabled);
 
@@ -65,10 +60,6 @@ const Login = () => {
 
     return(
       <Styled>
-        <UserContext.Provider value={{
-          formValues,
-          setFormValues,
-        }}>
           <div>
             <h1>Water my Plants</h1>
 
@@ -91,7 +82,7 @@ const Login = () => {
               <label>Password
                 <input 
                   onChange={onChange}
-                  type='text'
+                  type='password'
                   name='password'
                   value={formValues.password}
                 />
@@ -104,7 +95,6 @@ const Login = () => {
             </form>
           </div>
         </div>
-      </UserContext.Provider>
     </Styled>
   )
 };
