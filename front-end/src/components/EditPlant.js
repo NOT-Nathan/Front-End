@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../helpers/axiosWithAuth';
+import * as yup from 'yup';
+import editPlantSchema from '../validation/editPlantSchema'
 
 const EditPlant = ({plantList, setPlantList}) => {
 
@@ -12,7 +14,18 @@ const EditPlant = ({plantList, setPlantList}) => {
         userID: '',
     }
 
+    const initialFormErrors = {
+        nickname: '',
+        species: '',
+        H2O: '',
+        img: ''
+    }
+
+    const initialDisabled = true
+
     const [plantToEdit, setPlantToEdit] = useState(initialState);
+    const [ formErrors, setFormErrors ] = useState(initialFormErrors);
+    const [ disabled, setDisabled ] = useState(initialDisabled);
 
     const { push } = useHistory();
 
@@ -43,6 +56,18 @@ const EditPlant = ({plantList, setPlantList}) => {
     };
 
     const handleChange = (e) => {
+        yup
+        .reach(editPlantSchema, e.target.name)
+        .validate(e.target.value)
+          .then(() => setFormErrors({
+            ...formErrors, 
+            [e.target.name]: ''
+          }))
+          .catch(({errors}) => setFormErrors({
+            ...errors, 
+            [e.target.name]: formErrors[0]
+          }));
+
         setPlantToEdit({ 
             ...plantToEdit, 
             [e.target.name]: e.target.value 
@@ -83,7 +108,7 @@ const EditPlant = ({plantList, setPlantList}) => {
                     value={plantToEdit.img}
                 />
       
-          <button>Save</button>
+          <button disabled={disabled}>Save</button>
           <button onClick={() => deletePlant}>Delete</button>
       
         </form>

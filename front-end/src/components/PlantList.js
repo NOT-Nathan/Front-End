@@ -27,31 +27,35 @@ const PlantList = () => {
     return(
         <Styled>
             <div className="plant-list-container">
+
                 <div className='add-plant'>
+
                 <button onClick={() => {
                 <AddPlant plantList={plantList} setPlantList={setPlantList}/>;
                 push('/addPlant')
                 }}>
                 Add Plant
                 </button>
+
                 </div>
+
             <h1>Plants</h1>
             <div className="secondary-list-container">
 
-
-
                 <Link to='/editAccount'>
+
                     <button className='logout-btn'>
                         Edit My Account
                     </button>
+
                 </Link>
 
                 <button onClick={logout}>
                     Logout
                 </button>
 
-
             </div>
+            
             </div>
 
             {/* {console.log(plantList)} */}

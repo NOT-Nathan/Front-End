@@ -141,6 +141,7 @@ label{
 
 input{
   border-radius: 15px;
+  padding: 0.4% 0%;
 }
 
 button{
@@ -163,5 +164,10 @@ button{
     width: 80%;
     align-items: center;
     margin: 0 auto;
+}
+
+button:hover{
+    background-color: red;
+    
 }
 `
