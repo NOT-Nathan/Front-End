@@ -74,7 +74,7 @@ const Register = () => {
             <div>{formErrors.username}</div>
             <div>{formErrors.password}</div>
             <div>{formErrors.phonenumber}</div>
-                <label>Username
+                <label>Username:
                     <input 
                         onChange={onChange}
                         type='text'
@@ -83,7 +83,7 @@ const Register = () => {
                         placeholder='Username'
                     />
                 </label>
-                <label>Password
+                <label>Password:
                     <input 
                     onChange={onChange}
                     type='text'
@@ -92,7 +92,7 @@ const Register = () => {
                     placeholder='Password'
                     />
                 </label>
-                <label className='last'>Phone Number
+                <label className='last'>Phone Number:
                     <input 
                     onChange={onChange}
                     type='text'
@@ -113,7 +113,6 @@ const Register = () => {
 export default Register;
 
 const Styled = styled.div`
-
 & .form {
   display: flex;
   flex-direction: column;
@@ -173,7 +172,8 @@ label{
 h1{
   color: blue;
   text-shadow: 2.2px 1px 0px white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: WildGrowth;
+  font-size: 50px;
 }
 
 h3{
@@ -189,4 +189,5 @@ h3{
   & .btn-link{
     width: 40%;
   }
+}
 `

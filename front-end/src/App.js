@@ -7,7 +7,6 @@ import EditPlant from './components/EditPlant';
 import PlantList from './components/PlantList';
 import EditUser from './components/EditUser';
 import AddPlant from './components/AddPlant';
-import Css from './App.css'
 
 function App() {
   return (

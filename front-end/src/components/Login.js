@@ -4,6 +4,7 @@ import axios from "axios";
 import { loginSchema } from '../validation/loginSchema';
 import styled from 'styled-components';
 import { useHistory, Link } from "react-router-dom";
+import '../index.css';
 
 const initialFormValues = {
     username: '',
@@ -70,7 +71,7 @@ const Login = () => {
             <h3>Log into your Account</h3>
               <div>{formErrors.userName}</div>
               <div>{formErrors.passWord}</div>
-                <label>Username
+                <label>Username:
                     <input 
                     onChange={onChange}
                     type='text'
@@ -79,7 +80,7 @@ const Login = () => {
                     placeholder='Username'
                     />
                 </label>
-                <label className='last'>Password
+                <label className='last'>Password:
                     <input 
                         onChange={onChange}
                         type='text'
@@ -167,12 +168,13 @@ label{
 h1{
   color: blue;
   text-shadow: 2.2px 1px 0px white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: WildGrowth;
+  font-size: 50px;
 }
 
 h3{
   color: black;
-  font-family: Arial, Helvetica, sans-serif ;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 @media(min-width: 1200px) {

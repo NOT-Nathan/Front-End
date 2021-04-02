@@ -1,6 +1,7 @@
 import axiosWithAuth from '../helpers/axiosWithAuth';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 
 const AddPlant = ({plantList, setPlantList}) => {
 
@@ -39,8 +40,17 @@ const AddPlant = ({plantList, setPlantList}) => {
     const { push } = useHistory();
 
     return(
+        <Styled>
+  
         <form onSubmit={submit}>
-            <h1>Add A New Plant</h1>
+        
+            <div className='heading'>
+
+                <h2>Add A New Plant</h2>
+
+            </div>
+
+            <div className='main-container'>
 
             <label htmlFor="nickname">Plant Nickname:</label>
             <input
@@ -71,8 +81,55 @@ const AddPlant = ({plantList, setPlantList}) => {
             />
 
             <button onClick={() => push('/plants')}>Add Plant</button>
+
+            </div>
+
         </form>
+
+        </Styled>
     )
 };
 
 export default AddPlant;
+
+const Styled = styled.div`
+h2{
+  color: blue;
+  text-shadow: 2.2px 1px 0px white;
+  font-family: WildGrowth;
+  font-size: 50px;
+}
+
+label{
+  font-size: 1.4rem;
+  margin: 1% 0%;
+  text-decoration: underline;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input{
+  border-radius: 15px;
+}
+
+button{
+  padding: 1% 1%;
+  font-size: 18px;
+  border-radius: 15px;
+  background-color: rosybrown;
+  color: blue;
+}
+
+& .heading{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+& .main-container{ 
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    align-items: center;
+    margin: 0 auto;
+}
+`

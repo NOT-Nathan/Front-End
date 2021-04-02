@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import axiosWithAuth from '../helpers/axiosWithAuth';
 import AddPlant from './AddPlant';
 import EditPlant from "./EditPlant";
+import styled from 'styled-components';
 
 const PlantList = () => {
 
@@ -24,20 +25,38 @@ const PlantList = () => {
     }
 
     return(
-        <div className="plant-list-container">
-
+        <Styled>
+            <div className="plant-list-container">
+                <div className='add-plant'>
+                <button onClick={() => {
+                <AddPlant plantList={plantList} setPlantList={setPlantList}/>;
+                push('/addPlant')
+                }}>
+                Add Plant
+                </button>
+                </div>
             <h1>Plants</h1>
+            <div className="secondary-list-container">
 
-            <Link to='/editAccount' >
-                Edit My Account
-            </Link>
-            <button onClick={logout}>
-                Logout
-            </button>
+
+
+                <Link to='/editAccount'>
+                    <button className='logout-btn'>
+                        Edit My Account
+                    </button>
+                </Link>
+
+                <button onClick={logout}>
+                    Logout
+                </button>
+
+
+            </div>
+            </div>
 
             {/* {console.log(plantList)} */}
             {plantList.map(plant => (
-                <div key={plant.id}>
+                <div key={plant.id} className='plant-card'>
                     <img src={plant.img} alt='plant' onClick={<EditPlant />} />
                     <p>Nickname:{plant.nickname}</p>
                     <p>Species:{plant.species}</p>
@@ -45,14 +64,54 @@ const PlantList = () => {
                 </div>
             ))}
 
-            <button onClick={() => {
-                <AddPlant plantList={plantList} setPlantList={setPlantList}/>;
-                push('/addPlant')
-            }}>
-            Add Plant
-            </button>
-        </div> 
+        </Styled>
     )
 };
 
 export default PlantList;
+
+const Styled = styled.div`
+
+h1{
+  color: blue;
+  text-shadow: 2.2px 1px 0px white;
+  font-family: WildGrowth;
+  font-size: 50px;
+  text-align: end;
+  border-bottom: solid red 4px;
+}
+
+button{
+  padding: 2% 5%;
+  font-size: 20px;
+  background-color: rosybrown;
+  color: blue;
+}
+
+& .plant-list-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+& .add-plant{
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid red 4px;
+    margin-top: 2%;
+}
+
+& .secondary-list-container{
+    width: 20%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: solid red 4px;
+}
+
+& .logout-btn{
+    color: blue;
+}
+
+`
