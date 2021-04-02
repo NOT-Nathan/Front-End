@@ -13,7 +13,7 @@ const initialFormValues = {
 }
 
 const initialFormErrors = {
-    userName: '',
+    username: '',
     phonenumber: '',
     password: '',
 }
@@ -113,6 +113,9 @@ const Register = () => {
 export default Register;
 
 const Styled = styled.div`
+
+font-family: Comfortaa;
+
 & .form {
   display: flex;
   flex-direction: column;
@@ -153,6 +156,7 @@ button{
   padding: 1% 0%;
   background-color: rosybrown;
   color: blue;
+  font-family: Comfortaa;
 }
 
 input{
@@ -161,12 +165,13 @@ input{
   padding-bottom: 2%;
   width: 100%;
   margin-bottom: 8px;
+  font-family: Comfortaa;
 }
 
 label{
   font-size: 1.2rem;
   margin: 1% 0%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Comfortaa;
 }
 
 h1{
@@ -178,7 +183,11 @@ h1{
 
 h3{
   color: black;
-  font-family: Arial, Helvetica, sans-serif ;
+  font-family: Comfortaa;
+}
+
+button:hover{
+    background-color: lightgray;
 }
 
 @media(min-width: 1200px) {
@@ -189,5 +198,6 @@ h3{
   & .btn-link{
     width: 40%;
   }
+
 }
 `

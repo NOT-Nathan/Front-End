@@ -12,8 +12,8 @@ const initialFormValues = {
 };
 
 const initialFormErrors = {
-    userName: '',
-    passWord: '',
+    username: '',
+    passnord: '',
 };
 
 const initialDisabled = true;
@@ -69,8 +69,8 @@ const Login = () => {
           <h1>Water my Plants</h1>
             <form onSubmit={onSubmit} className='form'>
             <h3>Log into your Account</h3>
-              <div>{formErrors.userName}</div>
-              <div>{formErrors.passWord}</div>
+              <div>{formErrors.username}</div>
+              <div>{formErrors.password}</div>
                 <label>Username:
                     <input 
                     onChange={onChange}
@@ -103,6 +103,8 @@ export default Login;
 
 const Styled = styled.div`
 
+font-family: Comfortaa;
+
 & .form {
   display: flex;
   flex-direction: column;
@@ -131,6 +133,7 @@ const Styled = styled.div`
   color: blue;
   margin-top: 4%;
   margin-bottom: 4%;
+  font-family: Comfortaa;
 }
 
 & .btn-link{
@@ -148,6 +151,7 @@ button{
   padding: 1% 0%;
   background-color: rosybrown;
   color: blue;
+  font-family: Comfortaa;
 }
 
 input{
@@ -156,13 +160,13 @@ input{
   padding-bottom: 2%;
   width: 100%;
   margin-bottom: 8px;
-  
+  font-family: Comfortaa;
 }
 
 label{
   font-size: 1.2rem;
   margin: 1% 0%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Comfortaa;
 }
 
 h1{
@@ -174,7 +178,11 @@ h1{
 
 h3{
   color: black;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Comfortaa;
+}
+
+button:hover{
+    background-color: lightgray;
 }
 
 @media(min-width: 1200px) {
@@ -186,4 +194,5 @@ h3{
     width: 40%;
   }
 }
+
 `

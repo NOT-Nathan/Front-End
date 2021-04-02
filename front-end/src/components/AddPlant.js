@@ -125,6 +125,9 @@ const AddPlant = ({plantList, setPlantList}) => {
 export default AddPlant;
 
 const Styled = styled.div`
+
+font-family: Comfortaa;
+
 h2{
   color: blue;
   text-shadow: 2.2px 1px 0px white;
@@ -136,12 +139,13 @@ label{
   font-size: 1.4rem;
   margin: 1% 0%;
   text-decoration: underline;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Comfortaa;
 }
 
 input{
   border-radius: 15px;
   padding: 0.4% 0%;
+  font-family: Comfortaa;
 }
 
 button{
@@ -150,6 +154,7 @@ button{
   border-radius: 15px;
   background-color: rosybrown;
   color: blue;
+  font-family: Comfortaa;
 }
 
 & .heading{
@@ -167,7 +172,6 @@ button{
 }
 
 button:hover{
-    background-color: red;
-    
+    background-color: lightgray;
 }
 `

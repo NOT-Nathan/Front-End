@@ -55,7 +55,7 @@ const PlantList = () => {
                 </button>
 
             </div>
-            
+
             </div>
 
             {/* {console.log(plantList)} */}
@@ -113,6 +113,10 @@ button{
 
 & .logout-btn{
     color: blue;
+}
+
+button:hover{
+    background-color: lightgray;
 }
 
 `

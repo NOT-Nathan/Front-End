@@ -5,6 +5,12 @@
     font-weight: 100;
 }
 
+@font-face {
+    font-family: "Comfortaa";
+    src: local('Comfortaa-Variable_wght'),
+    url(./fonts/Comfortaa-VariableFont_wght.ttf) format('truetype');
+}
+
 body{
     background-color: lightgreen;
 }
