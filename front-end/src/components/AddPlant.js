@@ -2,6 +2,8 @@ import axiosWithAuth from '../helpers/axiosWithAuth';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import * as yup from 'yup';
+import addPlantSchema from '../validation/addPlantSchema';
 
 const AddPlant = ({plantList, setPlantList}) => {
 
@@ -13,9 +15,32 @@ const AddPlant = ({plantList, setPlantList}) => {
         img: '',
     }
 
+    const initialFormErrors = {
+        nickname: '',
+        species: '',
+        H2O: '',
+        img: ''
+    }
+
+    const initialDisabled = true
+
     const [newPlant, setNewPlant] = useState(initialState);
+    const [ formErrors, setFormErrors ] = useState(initialFormErrors);
+    const [ disabled, setDisabled ] = useState(initialDisabled);
 
     const handleChange = (e) => {
+        yup
+        .reach(addPlantSchema, e.target.name)
+        .validate(e.target.value)
+          .then(() => setFormErrors({
+            ...formErrors, 
+            [e.target.name]: ''
+          }))
+          .catch(({errors}) => setFormErrors({
+            ...errors, 
+            [e.target.name]: formErrors[0]
+          }));
+
         setNewPlant({ 
             ...newPlant, 
             [e.target.name]: e.target.value 
@@ -38,6 +63,12 @@ const AddPlant = ({plantList, setPlantList}) => {
         }, [plantList, newPlant, setPlantList] );
 
     const { push } = useHistory();
+
+    useEffect(() => {
+        addPlantSchema
+          .isValid(newPlant)
+          .then(valid => setDisabled(!valid))
+        }, [newPlant])
 
     return(
         <Styled>
@@ -75,12 +106,13 @@ const AddPlant = ({plantList, setPlantList}) => {
 
             <label htmlFor="img">Image:</label>
             <input
+                placeholder='Optional'
                 name="img"
                 onChange={handleChange}
                 value={newPlant.img}
             />
 
-            <button onClick={() => push('/plants')}>Add Plant</button>
+            <button disabled={disabled} onClick={() => push('/plants')}>Add Plant</button>
 
             </div>
 
