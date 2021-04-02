@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useHistory } from 'react-router-dom';
 import axiosWithAuth from '../helpers/axiosWithAuth';
 import AddPlant from './AddPlant';
 import EditPlant from "./EditPlant";
+import { UserContext } from '../contexts/UserContext';
 
 const PlantList = () => {
+
+    const user = useContext(UserContext);
 
     const [plantList, setPlantList] = useState([]);
     const { push } = useHistory();
 
     useEffect(() => {
-        axiosWithAuth().get(`https://tt130bwplants.herokuapp.com/api/auth/plants`)
+        axiosWithAuth().get(`https://tt130bwplants.herokuapp.com/api/users/${user.formValues.id}/plants`)
             .then(res => {
                 console.log(res);
                 setPlantList(res.data)
             })
             .catch(err => console.log(err))
-    }, [] );
+    }, [user.formValues.id] );
 
     const logout = e => {
         localStorage.clear();

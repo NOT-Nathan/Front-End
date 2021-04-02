@@ -4,15 +4,17 @@ import { loginSchema } from '../validation/loginSchema';
 import styled from 'styled-components';
 import { useHistory, Link } from "react-router-dom";
 import axios from 'axios';
+import { UserContext } from '../contexts/UserContext';
 
 const initialFormValues = {
+    id: '',
     username: '',
     password: '',
 };
 
 const initialFormErrors = {
-    userName: '',
-    passWord: '',
+    username: '',
+    password: '',
 };
 
 const initialDisabled = true;
@@ -63,39 +65,48 @@ const Login = () => {
 
     return(
       <Styled>
-        <div>
-          <h1>Water my Plants</h1>
+        <UserContext.Provider value={{
+          formValues,
+          setFormValues,
+        }}>
           <div>
-          <h3>Log into your Account</h3>
+            <h1>Water my Plants</h1>
+
+            <div>
+              <h3>Log into your Account</h3>
+
             <form onSubmit={onSubmit} className='form'>
-              <div>{formErrors.userName}</div>
-              <div>{formErrors.passWord}</div>
-                <label>Username
-                    <input 
-                    onChange={onChange}
-                    type='text'
-                    name='username'
-                    value={formValues.username}
-                    />
-                </label>
-                <label>Password
-                    <input 
-                        onChange={onChange}
-                        type='text'
-                        name='password'
-                        value={formValues.password}
-                    />
-                </label>
+              <div>{formErrors.username}</div>
+              <div>{formErrors.password}</div>
+
+              <label>Username
+                <input 
+                  onChange={onChange}
+                  type='text'
+                  name='username'
+                  value={formValues.username}
+                />
+              </label>
+
+              <label>Password
+                <input 
+                  onChange={onChange}
+                  type='text'
+                  name='password'
+                  value={formValues.password}
+                />
+              </label>
               
-                <button className='btn' disabled={disabled}>Login</button>
+              <button className='btn' disabled={disabled}>Login</button>
               
               <Link to='/register'>Don't Have An Account?</Link>
 
             </form>
           </div>
         </div>
-      </Styled>
-    )
+      </UserContext.Provider>
+    </Styled>
+  )
 };
 
 export default Login;
