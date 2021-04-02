@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import axiosWithAuth from '../helpers/axiosWithAuth';
 import * as yup from 'yup';
@@ -73,6 +73,12 @@ const EditPlant = ({plantList, setPlantList}) => {
             [e.target.name]: e.target.value 
         })
     };
+
+    useEffect(() => {
+        editPlantSchema
+          .isValid(plantToEdit)
+          .then(valid => setDisabled(!valid))
+        }, [plantToEdit])
 
     return(
         <>
